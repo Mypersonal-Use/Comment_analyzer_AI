@@ -29,6 +29,43 @@ import tempfile
 # Add src directory to path
 sys.path.insert(0, str(Path(__file__).parent / 'src'))
 
+# Setup NLTK data for Streamlit deployment
+@st.cache_resource
+def setup_nltk():
+    """Setup NLTK data with caching to avoid repeated downloads"""
+    import nltk
+    import logging
+    
+    # Set up logging
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    
+    try:
+        # Try to find existing data first
+        nltk.data.find('tokenizers/punkt')
+        logger.info("NLTK punkt tokenizer already available")
+    except LookupError:
+        try:
+            logger.info("Downloading NLTK punkt tokenizer...")
+            nltk.download('punkt', quiet=True)
+        except Exception as e:
+            logger.warning(f"Could not download punkt: {e}")
+    
+    try:
+        nltk.data.find('corpora/stopwords')
+        logger.info("NLTK stopwords already available")
+    except LookupError:
+        try:
+            logger.info("Downloading NLTK stopwords...")
+            nltk.download('stopwords', quiet=True)
+        except Exception as e:
+            logger.warning(f"Could not download stopwords: {e}")
+    
+    return True
+
+# Initialize NLTK data
+setup_nltk()
+
 # Import our AI system
 from econsultation_ai import EConsultationAI
 from data_processor import CommentData

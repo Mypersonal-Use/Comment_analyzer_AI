@@ -32,17 +32,29 @@ except ImportError:
     logging.warning("Transformers not available for abstractive summarization.")
 
 # Download required NLTK data
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    logging.info("Downloading NLTK punkt tokenizer...")
-    nltk.download('punkt', quiet=True)
+# Download required NLTK data with better error handling
+def ensure_nltk_data():
+    """Ensure required NLTK data is available"""
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        try:
+            logging.info("Downloading NLTK punkt tokenizer...")
+            nltk.download('punkt', quiet=True)
+        except Exception as e:
+            logging.warning(f"Could not download punkt tokenizer: {e}")
+    
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        try:
+            logging.info("Downloading NLTK stopwords...")
+            nltk.download('stopwords', quiet=True)
+        except Exception as e:
+            logging.warning(f"Could not download stopwords: {e}")
 
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    logging.info("Downloading NLTK stopwords...")
-    nltk.download('stopwords', quiet=True)
+# Ensure NLTK data is available
+ensure_nltk_data()
 
 @dataclass
 class SummaryResult:
@@ -74,8 +86,21 @@ class TextSummarizer:
             self.available_methods.append('transformer')
             self._initialize_transformer()
             
-        # Initialize tokenizer
-        self.tokenizer = Tokenizer(language)
+        # Initialize tokenizer with error handling
+        try:
+            self.tokenizer = Tokenizer(language)
+        except Exception as e:
+            logging.warning(f"Could not initialize tokenizer for {language}: {e}")
+            # Fallback to basic english tokenizer or skip language-specific features
+            try:
+                self.tokenizer = Tokenizer('english')
+                logging.info("Fallback to English tokenizer")
+            except Exception as fallback_error:
+                logging.error(f"Could not initialize any tokenizer: {fallback_error}")
+                # Set tokenizer to None and handle this in methods that use it
+                self.tokenizer = None
+                # Remove summarization methods that require tokenizer
+                self.available_methods = ['tfidf']  # TF-IDF doesn't need sumy tokenizer
         
     def _initialize_transformer(self):
         """Initialize transformer-based summarizer"""
@@ -138,6 +163,11 @@ class TextSummarizer:
     
     def _summarize_extractive(self, text: str, method: str, max_sentences: int) -> SummaryResult:
         """Perform extractive summarization using specified method"""
+        
+        # Check if tokenizer is available
+        if self.tokenizer is None:
+            logging.warning("Tokenizer not available, falling back to TF-IDF method")
+            return self._summarize_with_tfidf(text, max_sentences)
         
         # Parse text
         parser = PlaintextParser.from_string(text, self.tokenizer)
