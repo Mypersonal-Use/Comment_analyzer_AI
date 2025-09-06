@@ -35,31 +35,45 @@ def setup_nltk():
     """Setup NLTK data with caching to avoid repeated downloads"""
     import nltk
     import logging
+    import os
     
     # Set up logging
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     
+    # Ensure NLTK data directory exists
     try:
-        # Try to find existing data first
-        nltk.data.find('tokenizers/punkt')
-        logger.info("NLTK punkt tokenizer already available")
-    except LookupError:
-        try:
-            logger.info("Downloading NLTK punkt tokenizer...")
-            nltk.download('punkt', quiet=True)
-        except Exception as e:
-            logger.warning(f"Could not download punkt: {e}")
+        nltk_data_dir = os.path.expanduser('~/nltk_data')
+        os.makedirs(nltk_data_dir, exist_ok=True)
+        if nltk_data_dir not in nltk.data.path:
+            nltk.data.path.append(nltk_data_dir)
+        logger.info(f"NLTK data directory: {nltk_data_dir}")
+    except Exception as e:
+        logger.warning(f"Could not setup NLTK data directory: {e}")
     
-    try:
-        nltk.data.find('corpora/stopwords')
-        logger.info("NLTK stopwords already available")
-    except LookupError:
+    # Download required data more aggressively
+    nltk_downloads = [
+        ('punkt', 'tokenizers/punkt'),
+        ('stopwords', 'corpora/stopwords')
+    ]
+    
+    for download_name, data_path in nltk_downloads:
         try:
-            logger.info("Downloading NLTK stopwords...")
-            nltk.download('stopwords', quiet=True)
-        except Exception as e:
-            logger.warning(f"Could not download stopwords: {e}")
+            nltk.data.find(data_path)
+            logger.info(f"NLTK {download_name} already available")
+        except LookupError:
+            try:
+                logger.info(f"Downloading NLTK {download_name}...")
+                nltk.download(download_name, quiet=False)  # Show download progress
+                logger.info(f"Successfully downloaded NLTK {download_name}")
+            except Exception as e:
+                logger.error(f"Failed to download NLTK {download_name}: {e}")
+                try:
+                    # Try alternative download method
+                    nltk.download(download_name, download_dir=nltk_data_dir, quiet=False)
+                    logger.info(f"Successfully downloaded NLTK {download_name} to {nltk_data_dir}")
+                except Exception as e2:
+                    logger.error(f"Alternative download also failed for {download_name}: {e2}")
     
     return True
 

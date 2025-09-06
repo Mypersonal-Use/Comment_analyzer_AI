@@ -220,8 +220,19 @@ class TextSummarizer:
     def _summarize_with_tfidf(self, text: str, max_sentences: int) -> SummaryResult:
         """Perform TF-IDF based extractive summarization"""
         
-        # Split into sentences
-        sentences = nltk.sent_tokenize(text)
+        # Split into sentences with robust error handling
+        try:
+            sentences = nltk.sent_tokenize(text)
+        except LookupError:
+            # NLTK punkt tokenizer not available, use simple sentence splitting
+            logging.warning("NLTK punkt tokenizer not available, using simple sentence splitting")
+            # Simple sentence splitting as fallback
+            import re
+            sentences = re.split(r'[.!?]+', text)
+            sentences = [s.strip() for s in sentences if s.strip()]
+            if not sentences:
+                # If no sentences found, use the whole text
+                sentences = [text.strip()]
         
         if len(sentences) <= max_sentences:
             summary = text
@@ -304,7 +315,17 @@ class TextSummarizer:
     def _extract_key_sentences(self, original_text: str, summary: str, num_sentences: int) -> List[str]:
         """Extract key sentences from original text that are most similar to summary"""
         
-        sentences = nltk.sent_tokenize(original_text)
+        # Split into sentences with robust error handling
+        try:
+            sentences = nltk.sent_tokenize(original_text)
+        except LookupError:
+            # NLTK punkt tokenizer not available, use simple sentence splitting
+            logging.warning("NLTK punkt tokenizer not available in _extract_key_sentences, using simple splitting")
+            import re
+            sentences = re.split(r'[.!?]+', original_text)
+            sentences = [s.strip() for s in sentences if s.strip()]
+            if not sentences:
+                sentences = [original_text.strip()]
         if len(sentences) <= num_sentences:
             return sentences
             
