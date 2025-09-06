@@ -1,0 +1,45 @@
+eConsultation AI - Analysis Summary Report
+==================================================
+
+OVERVIEW
+--------------------
+Total Comments Analyzed: 20
+Processing Time: 0.07 seconds
+Success Rate: 100.0%
+
+SENTIMENT ANALYSIS
+------------------------------
+Positive: 80.0%
+Negative: 15.0%
+Neutral: 5.0%
+
+Average Confidence: 0.248
+
+GLOBAL SUMMARY
+--------------------
+Method: textrank
+Compression Ratio: 0.136
+Summary Text:
+I strongly support the proposed amendments to the corporate governance framework. While I appreciate the intent behind these amendments, I have concerns about the implementation timeline. The proposed amendments fail to address the unique challenges faced by listed companies in emerging markets. Clear guidelines on how violations will be detected and prosecuted would improve the effectiveness of these amendments. However, I suggest including provisions for regular review and updates to ensure the regulations remain relevant and effective.
+
+TOP KEYWORDS
+--------------------
+ 1. amendments (11 occurrences)
+ 2. proposed (6 occurrences)
+ 3. changes (5 occurrences)
+ 4. requirements (5 occurrences)
+ 5. companies (5 occurrences)
+ 6. governance (4 occurrences)
+ 7. business (4 occurrences)
+ 8. implementation (4 occurrences)
+ 9. provisions (4 occurrences)
+10. support (3 occurrences)
+
+PROCESSING STATISTICS
+------------------------------
+Total Comments Processed: 20
+Total Comments Input: 20
+Success Rate: 100.000
+Avg Sentiment Confidence: 0.248
+Avg Summary Compression: 0.987
+Total Words Analyzed: 0

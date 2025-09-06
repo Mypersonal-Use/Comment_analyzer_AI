@@ -1,0 +1,28 @@
+# Web Application Dependencies
+streamlit>=1.28.0
+pandas>=1.4.3
+numpy>=1.21.0
+matplotlib>=3.5.2
+seaborn>=0.11.2
+
+# Core NLP and ML libraries
+nltk>=3.8.1
+textblob>=0.17.1
+vaderSentiment>=3.3.2
+scikit-learn>=1.1.0
+
+# Text processing and summarization
+sumy>=0.11.0
+
+# Visualization and word cloud
+wordcloud>=1.9.2
+
+# Data handling
+openpyxl>=3.0.10
+
+# Progress bars and utilities
+tqdm>=4.64.0
+
+# Web framework
+fastapi>=0.95.0
+uvicorn>=0.22.0

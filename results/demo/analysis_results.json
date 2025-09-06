@@ -1,0 +1,412 @@
+{
+  "total_comments": 20,
+  "processing_stats": {
+    "total_comments_processed": 20,
+    "total_comments_input": 20,
+    "success_rate": 100.0,
+    "avg_sentiment_confidence": 0.24779999999999996,
+    "avg_summary_compression": 0.9870967741935484,
+    "total_words_analyzed": 0
+  },
+  "total_processing_time": 0.07255387306213379,
+  "sentiment_distribution": {
+    "positive": 80.0,
+    "negative": 15.0,
+    "neutral": 5.0
+  },
+  "global_summary": {
+    "summary_text": "I strongly support the proposed amendments to the corporate governance framework. While I appreciate the intent behind these amendments, I have concerns about the implementation timeline. The proposed amendments fail to address the unique challenges faced by listed companies in emerging markets. Clear guidelines on how violations will be detected and prosecuted would improve the effectiveness of these amendments. However, I suggest including provisions for regular review and updates to ensure the regulations remain relevant and effective.",
+    "method": "textrank",
+    "compression_ratio": 0.13580246913580246,
+    "word_count_original": 567,
+    "word_count_summary": 77
+  },
+  "global_keywords": {
+    "top_keywords": [
+      [
+        "amendments",
+        11
+      ],
+      [
+        "proposed",
+        6
+      ],
+      [
+        "changes",
+        5
+      ],
+      [
+        "requirements",
+        5
+      ],
+      [
+        "companies",
+        5
+      ],
+      [
+        "governance",
+        4
+      ],
+      [
+        "business",
+        4
+      ],
+      [
+        "implementation",
+        4
+      ],
+      [
+        "provisions",
+        4
+      ],
+      [
+        "support",
+        3
+      ],
+      [
+        "corporate",
+        3
+      ],
+      [
+        "framework",
+        3
+      ],
+      [
+        "transparency",
+        3
+      ],
+      [
+        "mandatory",
+        3
+      ],
+      [
+        "particularly",
+        3
+      ],
+      [
+        "appreciate",
+        3
+      ],
+      [
+        "compliance",
+        3
+      ],
+      [
+        "ensure",
+        3
+      ],
+      [
+        "regulatory",
+        3
+      ],
+      [
+        "reporting",
+        3
+      ]
+    ],
+    "total_words": 345,
+    "unique_words": 242
+  },
+  "individual_results": [
+    {
+      "comment_id": "1",
+      "original_text": "I strongly support the proposed amendments to the corporate governance framework. These changes will significantly enhance transparency and accountability in our business environment. The mandatory disclosure requirements are particularly welcome.",
+      "processing_time": 0.027798175811767578,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.265,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I strongly support the proposed amendments to the corporate governance framework. These changes will significantly enhance transparency and accountability in our business environment. The mandatory disclosure requirements are particularly welcome.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "2",
+      "original_text": "While I appreciate the intent behind these amendments, I have concerns about the implementation timeline. The 6-month period seems too short for companies to adequately prepare for these changes. I suggest extending it to 12 months.",
+      "processing_time": 0.0012955665588378906,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.072,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "While I appreciate the intent behind these amendments, I have concerns about the implementation timeline. The 6 month period seems too short for companies to adequately prepare for these changes. I suggest extending it to 12 months.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "3",
+      "original_text": "The proposed penalties for non-compliance appear excessive and may disproportionately impact smaller enterprises. A graduated penalty structure based on company size would be more equitable and practical.",
+      "processing_time": 0.0006422996520996094,
+      "sentiment": {
+        "overall_sentiment": "negative",
+        "confidence": 0.103,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The proposed penalties for non compliance appear excessive and may disproportionately impact smaller enterprises. A graduated penalty structure based on company size would be more equitable and practical.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "4",
+      "original_text": "I fully endorse these amendments. They align perfectly with international best practices and will help attract foreign investment. The provision for digital filing is especially commendable and will reduce administrative burden.",
+      "processing_time": 0.0008223056793212891,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.367,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I fully endorse these amendments. They align perfectly with international best practices and will help attract foreign investment. The provision for digital filing is especially commendable and will reduce administrative burden.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "5",
+      "original_text": "The consultation process has been thorough and inclusive. However, I believe clause 15.3 regarding audit committee composition needs clarification. The current wording is ambiguous and may lead to implementation difficulties.",
+      "processing_time": 0.0008084774017333984,
+      "sentiment": {
+        "overall_sentiment": "negative",
+        "confidence": 0.071,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "However, I believe clause 15. 3 regarding audit committee composition needs clarification. The current wording is ambiguous and may lead to implementation difficulties.",
+        "method": "textrank",
+        "compression_ratio": 0.7419354838709677
+      }
+    },
+    {
+      "comment_id": "6",
+      "original_text": "These amendments are long overdue. The enhanced director liability provisions will ensure better governance and protect stakeholder interests. I particularly appreciate the whistleblower protection mechanisms included.",
+      "processing_time": 0.0007777214050292969,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.375,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "These amendments are long overdue. The enhanced director liability provisions will ensure better governance and protect stakeholder interests. I particularly appreciate the whistleblower protection mechanisms included.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "7",
+      "original_text": "The proposed changes seem burdensome for startups and emerging companies. Consider providing exemptions or relaxed requirements for companies in their initial years of operation to promote entrepreneurship.",
+      "processing_time": 0.0007607936859130859,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.178,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The proposed changes seem burdensome for startups and emerging companies. Consider providing exemptions or relaxed requirements for companies in their initial years of operation to promote entrepreneurship.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "8",
+      "original_text": "I have mixed feelings about these amendments. While transparency is important, some provisions may compromise competitive advantages by requiring disclosure of sensitive business information.",
+      "processing_time": 0.0006003379821777344,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.222,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I have mixed feelings about these amendments. While transparency is important, some provisions may compromise competitive advantages by requiring disclosure of sensitive business information.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "9",
+      "original_text": "The amendments show a positive step towards modernizing our regulatory framework. The inclusion of ESG reporting requirements reflects current global trends and will benefit sustainable business practices.",
+      "processing_time": 0.0006701946258544922,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.209,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The amendments show a positive step towards modernizing our regulatory framework. The inclusion of ESG reporting requirements reflects current global trends and will benefit sustainable business practices.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "10",
+      "original_text": "I object to the proposed changes in section 8.2 regarding board composition. The mandated representation requirements may limit board flexibility and could impact decision-making efficiency.",
+      "processing_time": 0.0007009506225585938,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.176,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I object to the proposed changes in section 8. 2 regarding board composition. The mandated representation requirements may limit board flexibility and could impact decision making efficiency.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "11",
+      "original_text": "The draft legislation addresses most concerns raised during previous consultations. The balanced approach between regulatory oversight and business flexibility is commendable. Implementation support should be provided to ensure smooth transition.",
+      "processing_time": 0.0007357597351074219,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.222,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The draft legislation addresses most concerns raised during previous consultations. The balanced approach between regulatory oversight and business flexibility is commendable. Implementation support should be provided to ensure smooth transition.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "12",
+      "original_text": "While I support increased transparency, the quarterly reporting requirement seems excessive and may increase operational costs significantly. Semi-annual reporting would be more reasonable and cost-effective.",
+      "processing_time": 0.0008749961853027344,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.244,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "While I support increased transparency, the quarterly reporting requirement seems excessive and may increase operational costs significantly. Semi annual reporting would be more reasonable and cost effective.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "13",
+      "original_text": "The proposed amendments fail to address the unique challenges faced by listed companies in emerging markets. More flexibility and gradual implementation would be beneficial for market stability.",
+      "processing_time": 0.0007939338684082031,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.206,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The proposed amendments fail to address the unique challenges faced by listed companies in emerging markets. More flexibility and gradual implementation would be beneficial for market stability.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "14",
+      "original_text": "I appreciate the comprehensive nature of these amendments. The digital compliance portal mentioned in section 12 will greatly simplify regulatory compliance for businesses of all sizes.",
+      "processing_time": 0.0008389949798583984,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.164,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I appreciate the comprehensive nature of these amendments. The digital compliance portal mentioned in section 12 will greatly simplify regulatory compliance for businesses of all sizes.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "15",
+      "original_text": "The amendments are well-drafted and necessary for improving corporate governance standards. The provision for mandatory training for directors is particularly valuable and should enhance board effectiveness.",
+      "processing_time": 0.001001119613647461,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.246,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The amendments are well drafted and necessary for improving corporate governance standards. The provision for mandatory training for directors is particularly valuable and should enhance board effectiveness.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "16",
+      "original_text": "I have serious reservations about the retrospective application of certain provisions. This could create legal uncertainties and unfair penalties for past actions that were compliant under previous regulations.",
+      "processing_time": 0.0007033348083496094,
+      "sentiment": {
+        "overall_sentiment": "negative",
+        "confidence": 0.197,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I have serious reservations about the retrospective application of certain provisions. This could create legal uncertainties and unfair penalties for past actions that were compliant under previous regulations.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "17",
+      "original_text": "The consultation document is comprehensive, but lacks clarity on enforcement mechanisms. Clear guidelines on how violations will be detected and prosecuted would improve the effectiveness of these amendments.",
+      "processing_time": 0.00078582763671875,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.291,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The consultation document is comprehensive, but lacks clarity on enforcement mechanisms. Clear guidelines on how violations will be detected and prosecuted would improve the effectiveness of these amendments.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "18",
+      "original_text": "These amendments represent a significant improvement in corporate governance framework. The risk management requirements will help companies better prepare for future challenges and protect stakeholder interests.",
+      "processing_time": 0.0006804466247558594,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.448,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "These amendments represent a significant improvement in corporate governance framework. The risk management requirements will help companies better prepare for future challenges and protect stakeholder interests.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "19",
+      "original_text": "The proposed changes are reasonable and align with global standards. However, I suggest including provisions for regular review and updates to ensure the regulations remain relevant and effective.",
+      "processing_time": 0.0006034374237060547,
+      "sentiment": {
+        "overall_sentiment": "positive",
+        "confidence": 0.18,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "The proposed changes are reasonable and align with global standards. However, I suggest including provisions for regular review and updates to ensure the regulations remain relevant and effective.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    },
+    {
+      "comment_id": "20",
+      "original_text": "I strongly disagree with the mandatory rotation of auditors every five years. This could disrupt the audit quality and increase costs without proportional benefits. Seven to ten years would be more appropriate.",
+      "processing_time": 0.001741170883178711,
+      "sentiment": {
+        "overall_sentiment": "neutral",
+        "confidence": 0.72,
+        "method": "vader"
+      },
+      "summary": {
+        "summary_text": "I strongly disagree with the mandatory rotation of auditors every five years. This could disrupt the audit quality and increase costs without proportional benefits. Seven to ten years would be more appropriate.",
+        "method": "textrank",
+        "compression_ratio": 1.0
+      }
+    }
+  ]
+}
