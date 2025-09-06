@@ -28,21 +28,44 @@ except ImportError:
 # Data processing
 import pandas as pd
 
-# Download required NLTK data
+# Download required NLTK data with error handling
+def ensure_nltk_data():
+    """Ensure required NLTK data is available"""
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        try:
+            logging.info("Downloading NLTK stopwords...")
+            nltk.download('stopwords', quiet=True)
+        except Exception as e:
+            logging.warning(f"Could not download stopwords: {e}")
+    
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        try:
+            logging.info("Downloading NLTK punkt tokenizer...")
+            nltk.download('punkt', quiet=True)
+        except Exception as e:
+            logging.warning(f"Could not download punkt: {e}")
+
+# Ensure NLTK data is available
+ensure_nltk_data()
+
+# Import NLTK functions with fallback handling
 try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    logging.info("Downloading NLTK stopwords...")
-    nltk.download('stopwords', quiet=True)
+    from nltk.corpus import stopwords
+    STOPWORDS_AVAILABLE = True
+except ImportError:
+    STOPWORDS_AVAILABLE = False
+    logging.warning("NLTK stopwords not available")
 
 try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    logging.info("Downloading NLTK punkt tokenizer...")
-    nltk.download('punkt', quiet=True)
-
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+    from nltk.tokenize import word_tokenize
+    WORD_TOKENIZE_AVAILABLE = True
+except ImportError:
+    WORD_TOKENIZE_AVAILABLE = False
+    logging.warning("NLTK word_tokenize not available")
 
 @dataclass
 class WordCloudResult:
@@ -69,12 +92,17 @@ class WordCloudGenerator:
         """
         self.language = language
         
-        # Load stopwords
-        try:
-            self.stopwords = set(stopwords.words(language))
-        except:
-            self.stopwords = set()
-            logging.warning(f"Could not load stopwords for language: {language}")
+        # Load stopwords with robust error handling
+        self.stopwords = set()
+        if STOPWORDS_AVAILABLE:
+            try:
+                self.stopwords = set(stopwords.words(language))
+            except LookupError:
+                logging.warning(f"NLTK stopwords data not available for language: {language}")
+            except Exception as e:
+                logging.warning(f"Could not load stopwords for language {language}: {e}")
+        else:
+            logging.warning("NLTK stopwords module not available")
         
         # Add common generic stopwords
         generic_stopwords = {
@@ -127,8 +155,20 @@ class WordCloudGenerator:
         text = re.sub(r'[^\w\s]', ' ', text)
         text = re.sub(r'\s+', ' ', text.strip())
         
-        # Tokenize
-        words = word_tokenize(text)
+        # Tokenize with robust error handling
+        if WORD_TOKENIZE_AVAILABLE:
+            try:
+                words = word_tokenize(text)
+            except LookupError:
+                # NLTK punkt tokenizer not available, use simple word splitting
+                logging.warning("NLTK word tokenizer data not available, using simple word splitting")
+                words = text.split()
+            except Exception as e:
+                logging.warning(f"Error in word tokenization: {e}, using simple splitting")
+                words = text.split()
+        else:
+            # NLTK word_tokenize not available, use simple word splitting
+            words = text.split()
         
         # Filter words
         filtered_words = []
