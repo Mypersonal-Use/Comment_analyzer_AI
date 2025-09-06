@@ -60,12 +60,14 @@ except ImportError:
     STOPWORDS_AVAILABLE = False
     logging.warning("NLTK stopwords not available")
 
-try:
-    from nltk.tokenize import word_tokenize
-    WORD_TOKENIZE_AVAILABLE = True
-except ImportError:
-    WORD_TOKENIZE_AVAILABLE = False
-    logging.warning("NLTK word_tokenize not available")
+# Define our own tokenization function to avoid NLTK dependency issues
+def safe_word_tokenize(text):
+    """Safe word tokenization that doesn't depend on NLTK punkt data"""
+    # Simple but effective word tokenization using regex
+    import re
+    # Split on whitespace and punctuation but keep alphanumeric words
+    words = re.findall(r'\b\w+\b', text.lower())
+    return words
 
 @dataclass
 class WordCloudResult:
@@ -155,20 +157,8 @@ class WordCloudGenerator:
         text = re.sub(r'[^\w\s]', ' ', text)
         text = re.sub(r'\s+', ' ', text.strip())
         
-        # Tokenize with robust error handling
-        if WORD_TOKENIZE_AVAILABLE:
-            try:
-                words = word_tokenize(text)
-            except LookupError:
-                # NLTK punkt tokenizer not available, use simple word splitting
-                logging.warning("NLTK word tokenizer data not available, using simple word splitting")
-                words = text.split()
-            except Exception as e:
-                logging.warning(f"Error in word tokenization: {e}, using simple splitting")
-                words = text.split()
-        else:
-            # NLTK word_tokenize not available, use simple word splitting
-            words = text.split()
+        # Use our safe tokenization that doesn't depend on NLTK data
+        words = safe_word_tokenize(text)
         
         # Filter words
         filtered_words = []
