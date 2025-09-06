@@ -14,7 +14,12 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')  # Use non-interactive backend for web deployment
 import matplotlib.pyplot as plt
-import seaborn as sns
+
+# Optional seaborn import
+try:
+    import seaborn as sns
+except ImportError:
+    sns = None
 from pathlib import Path
 import io
 import base64

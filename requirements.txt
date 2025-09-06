@@ -1,20 +1,19 @@
-# Web Application Dependencies
-flask>=2.2.0
-pandas>=1.4.3
+# Core dependencies for Streamlit deployment
+streamlit>=1.28.0
+pandas>=1.4.0
 numpy>=1.21.0
-matplotlib>=3.5.2
+matplotlib>=3.5.0
 
-# Core NLP and ML libraries
+# Core NLP libraries  
 nltk>=3.8.1
 textblob>=0.17.1
 vaderSentiment>=3.3.2
-scikit-learn>=1.1.0
 
-# Text processing and summarization
+# Text processing
 sumy>=0.11.0
 
-# Visualization and word cloud
+# Word cloud
 wordcloud>=1.9.2
 
-# Progress bars and utilities
-tqdm>=4.64.0
+# Data handling
+openpyxl>=3.0.10

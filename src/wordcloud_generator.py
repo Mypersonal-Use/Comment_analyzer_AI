@@ -18,7 +18,12 @@ from textblob import TextBlob
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from wordcloud import WordCloud
-import seaborn as sns
+
+# Optional seaborn import
+try:
+    import seaborn as sns
+except ImportError:
+    sns = None
 
 # Data processing
 import pandas as pd
