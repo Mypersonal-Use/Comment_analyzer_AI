@@ -136,7 +136,11 @@ class TextSummarizer:
         
         return text
     
-    def summarize_single_text(self, text: str, method: str = 'textrank', 
+    def get_available_methods(self) -> List[str]:
+        """Get list of available summarization methods"""
+        return self.available_methods.copy()
+    
+    def summarize_single_text(self, text: str, method: str = 'textrank',
                             max_sentences: int = 3, max_words: int = None) -> SummaryResult:
         """
         Summarize a single text using specified method
@@ -150,8 +154,15 @@ class TextSummarizer:
         Returns:
             SummaryResult object with summarization results
         """
+        # Automatic fallback to available method if requested method is not available
         if method not in self.available_methods:
-            raise ValueError(f"Method '{method}' not available. Use one of: {self.available_methods}")
+            logging.warning(f"Method '{method}' not available. Available methods: {self.available_methods}")
+            if self.available_methods:
+                fallback_method = self.available_methods[0]
+                logging.info(f"Using fallback method: {fallback_method}")
+                method = fallback_method
+            else:
+                raise ValueError("No summarization methods are available")
         
         # Preprocess text
         processed_text = self.preprocess_text(text)
