@@ -26,8 +26,19 @@ import base64
 from typing import Dict, List
 import tempfile
 
-# Add src directory to path
-sys.path.insert(0, str(Path(__file__).parent / 'src'))
+# Add src directory to path for module imports
+src_path = str(Path(__file__).parent / 'src')
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
+    
+# Debug: Print path information for troubleshooting
+if 'STREAMLIT_SHARING' in os.environ:
+    st.write(f"Debug - Current working directory: {os.getcwd()}")
+    st.write(f"Debug - App file path: {Path(__file__).parent}")
+    st.write(f"Debug - Src path: {src_path}")
+    st.write(f"Debug - Src path exists: {os.path.exists(src_path)}")
+    if os.path.exists(src_path):
+        st.write(f"Debug - Src directory contents: {os.listdir(src_path)}")
 
 # Setup NLTK data for Streamlit deployment
 @st.cache_resource
@@ -80,9 +91,43 @@ def setup_nltk():
 # Initialize NLTK data
 setup_nltk()
 
-# Import our AI system
-from econsultation_ai import EConsultationAI
-from data_processor import CommentData
+# Import our AI system with error handling
+try:
+    # Test individual imports to be more specific about what's missing
+    try:
+        from econsultation_ai import EConsultationAI
+    except ImportError as e:
+        st.error(f"Failed to import EConsultationAI: {e}")
+        raise
+    
+    try:
+        from data_processor import CommentData
+    except ImportError as e:
+        st.error(f"Failed to import CommentData: {e}")
+        raise
+        
+    # Test sklearn import as well
+    try:
+        from sklearn.feature_extraction.text import TfidfVectorizer
+    except ImportError as e:
+        st.error(f"Failed to import scikit-learn: {e}")
+        st.error("Make sure scikit-learn is installed. Try: pip install scikit-learn")
+        raise
+        
+except ImportError as e:
+    st.error("❌ Module Import Error")
+    st.error("Failed to import required modules. This might be due to:")
+    st.error("1. Missing dependencies - ensure all packages in requirements.txt are installed")
+    st.error("2. Incorrect file structure - ensure the src/ directory contains all required modules")
+    st.error("3. Python path issues - the app might not be finding the src directory")
+    st.error(f"Original error: {e}")
+    
+    # Show current Python path for debugging
+    st.error("Current Python path:")
+    for path in sys.path:
+        st.text(f"  - {path}")
+        
+    st.stop()
 
 # Configure page
 st.set_page_config(
