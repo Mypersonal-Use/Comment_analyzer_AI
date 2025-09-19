@@ -1,22 +1,20 @@
-# Core dependencies for Streamlit deployment
-streamlit>=1.28.0
-pandas>=1.4.0
-numpy>=1.21.0
-matplotlib>=3.5.0
+# Core Streamlit dependencies
+streamlit
+pandas
+numpy
+matplotlib
 
-# Core NLP libraries  
-nltk>=3.8.1
-textblob>=0.17.1
-vaderSentiment>=3.3.2
+# NLP libraries
+nltk
+textblob
+vaderSentiment
+scikit-learn
 
 # Text processing
-sumy>=0.11.0
+sumy
 
-# Machine learning
-scikit-learn>=1.1.0
-
-# Word cloud
-wordcloud>=1.9.2
+# Visualization
+wordcloud
 
 # Data handling
-openpyxl>=3.0.10
+openpyxl

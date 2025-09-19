@@ -11,9 +11,15 @@ import time
 import json
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')  # Use non-interactive backend for web deployment
-import matplotlib.pyplot as plt
+# Matplotlib with error handling
+try:
+    import matplotlib
+    matplotlib.use('Agg')  # Use non-interactive backend for web deployment
+    import matplotlib.pyplot as plt
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+    plt = None
 
 # Optional seaborn import
 try:
@@ -294,6 +300,18 @@ def display_sentiment_metrics(results):
 def display_wordcloud_viz(result):
     """Create and display word cloud visualization"""
     if not hasattr(result, 'global_wordcloud'):
+        return
+    
+    if not MATPLOTLIB_AVAILABLE:
+        st.warning("Matplotlib not available for visualization. Showing keyword table instead.")
+        # Show keywords as table instead
+        if hasattr(result, 'global_wordcloud') and result.global_wordcloud.top_keywords:
+            keywords_df = pd.DataFrame(
+                result.global_wordcloud.top_keywords[:20],
+                columns=['Keyword', 'Frequency']
+            )
+            keywords_df.index = keywords_df.index + 1
+            st.dataframe(keywords_df, width='stretch')
         return
     
     wordcloud_data = result.global_wordcloud
